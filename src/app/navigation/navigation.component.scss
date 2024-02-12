@@ -1,0 +1,29 @@
+nav {
+    background-color: #0a3645;
+    font-family: var(--primary-font-family);
+    ul {
+        display: flex;
+        margin: 0;
+        li {
+            list-style-type: none;      
+            a {
+                padding: 15px 35px;
+                text-decoration: none;
+                display: inline-block;
+                font-size: 11px;
+                line-height: 12px;
+                letter-spacing: 0.66px;
+                color: var(--primary-white);
+                opacity: 0.5;
+                    &:focus-visible {
+                        outline: 1px dotted var(--primary-white);
+                    }
+
+                    &:hover {
+                        background-color: var(--primary-gray);
+                        opacity: 1;
+                    }
+            }  
+        }
+    }
+}
