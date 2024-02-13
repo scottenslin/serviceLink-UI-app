@@ -1,20 +1,50 @@
 <section class="page-1">
-    <table>
-        <tr>
-          <th></th>
-          <th>CATEGORY</th>
-          <th>SEO</th>
-          <th></th>
-        </tr>
-        <tr>
-          <td>Alfreds Futterkiste</td>
-          <td>Maria Anders</td>
-          <td>Germany</td>
-        </tr>
-        <tr>
-          <td>Centro comercial Moctezuma</td>
-          <td>Francisco Chang</td>
-          <td>Mexico</td>
-        </tr>
-      </table>
+        <article class="table-container">
+            <div class="page-1-header">
+                <h1>Section</h1>
+                <button class="primary-button" (click)="showNewCategorySection()">+ ADD CATEGORY</button>
+            </div>
+            <table>
+                <thead>
+                    <tr>
+                        <th></th>
+                        <th>CATEGORY</th>
+                        <th>SEO</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                    <tbody cdkDropList
+                        (cdkDropListDropped)="drop($event)">
+                        @for (category of categories; track category; let index = $index) {
+                        <tr>
+                            <td><img src="/assets/images/menu.svg" alt="menu button" /></td>
+                            <td class="example-box" cdkDrag>{{category.name}}</td>
+                            <td><span class="seo-number">{{category.seoNumber}}</span></td>
+                            <td class="last-column">
+                                <button class="remove-button" (click)="removeCategory(category)"> <img src="/assets/images/delete-button.svg" alt="red x to delete category" /> </button>
+                            </td>
+                        </tr>
+                        }
+                        @empty {
+                        <tr></tr>
+                        }
+                        @if(displayCreateNewCategory || categories.length < 1) { 
+                        <tr>
+                            <td><img src="/assets/images/menu.svg" alt="menu button" /></td>
+                            <td> <input id="newCategory" type="text" [(ngModel)]="newCategory" placeholder="Category Name" aria-labelledby="saveCategory" aria-label="Create New Category"/></td>
+                            <td><span class="seo-number">{{categories.length + 1}}</span></td>
+                            <td class="last-column">
+                                <button type="submit" id="saveCategory" class="primary-button" (click)="saveCategory()" [disabled]="newCategory.length < 1">
+                                    SAVE</button>
+                            </td>
+                        </tr>
+                        }
+                    </tbody>
+            </table>
+        </article>
+        <article class="design-section">
+            <p>Aliquam auctor, odio quis maximus condimentum, <b>est nunc vulputate elit</b>, a iaculis mauris justo
+                ultricies elit. Aliquam in arcu eget nibh volutpat vulputate id.</p>
+            <img src="/assets/images/house-mask-group.png" alt="blue house with clouds" />
+        </article>
 </section>
